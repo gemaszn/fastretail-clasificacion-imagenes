@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Resultado - FastRetail</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <nav>
+        <h1>FastRetail</h1>
+        <div>
+            <a href="/">Clasificar imagen</a>
+            <a href="/history">Histórico</a>
+            <a href="/docs">API</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="card">
+            <h2>Resultado de clasificación</h2>
+
+            <p><strong>Archivo:</strong> {{ result.filename }}</p>
+            <p><strong>Categoría asignada:</strong> {{ result.assigned_category }}</p>
+            <p><strong>Confianza:</strong> {{ result.confidence }}%</p>
+            <p><strong>Estado:</strong> {{ result.status }}</p>
+            <p><strong>S3 Key:</strong> {{ result.s3_key }}</p>
+        </section>
+
+        <section class="card">
+            <h3>Etiquetas detectadas por Amazon Rekognition</h3>
+
+            {% if result.detected_labels %}
+            <table>
+                <tr>
+                    <th>Etiqueta</th>
+                    <th>Confianza</th>
+                </tr>
+
+                {% for label in result.detected_labels %}
+                <tr>
+                    <td>{{ label.Name }}</td>
+                    <td>{{ label.Confidence }}%</td>
+                </tr>
+                {% endfor %}
+            </table>
+            {% else %}
+            <p>No se detectaron etiquetas con el umbral configurado.</p>
+            {% endif %}
+        </section>
+
+        <a class="button" href="/">Clasificar otra imagen</a>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>FastRetail Image Classifier</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <nav>
+        <h1>FastRetail</h1>
+        <div>
+            <a href="/">Clasificar imagen</a>
+            <a href="/history">Histórico</a>
+            <a href="/docs">API</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="hero">
+            <h2>Clasificación automática de productos</h2>
+            <p>
+                Sube una imagen de ropa, calzado o accesorios. El sistema la analizará
+                con Amazon Rekognition, asignará una categoría automática y guardará
+                el resultado en la base de datos.
+            </p>
+        </section>
+
+        <section class="card">
+            <h3>Subir imagen de producto</h3>
+
+            <form action="/classify" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" accept=".jpg,.jpeg,.png" required>
+                <button type="submit">Clasificar imagen</button>
+            </form>
+        </section>
+
+        <section class="info-grid">
+            <div>
+                <h3>1. Carga</h3>
+                <p>El usuario sube una imagen desde la interfaz web.</p>
+            </div>
+
+            <div>
+                <h3>2. Almacenamiento</h3>
+                <p>La imagen se guarda en un bucket privado de Amazon S3.</p>
+            </div>
+
+            <div>
+                <h3>3. IA</h3>
+                <p>Amazon Rekognition detecta etiquetas relevantes.</p>
+            </div>
+
+            <div>
+                <h3>4. Resultado</h3>
+                <p>El sistema asigna una categoría y guarda el resultado.</p>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

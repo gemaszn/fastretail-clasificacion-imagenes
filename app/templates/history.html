@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Histórico - FastRetail</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <nav>
+        <h1>FastRetail</h1>
+        <div>
+            <a href="/">Clasificar imagen</a>
+            <a href="/history">Histórico</a>
+            <a href="/docs">API</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <h2>Histórico de clasificaciones</h2>
+
+        {% if items %}
+        <table>
+            <tr>
+                <th>Archivo</th>
+                <th>Categoría</th>
+                <th>Confianza</th>
+                <th>Estado</th>
+                <th>Fecha</th>
+            </tr>
+
+            {% for item in items %}
+            <tr>
+                <td>{{ item.filename }}</td>
+                <td>{{ item.assigned_category }}</td>
+                <td>{{ item.confidence }}%</td>
+                <td>{{ item.status }}</td>
+                <td>{{ item.created_at }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <p>Todavía no hay imágenes clasificadas.</p>
+        {% endif %}
+    </main>
+</body>
+
+</html>
